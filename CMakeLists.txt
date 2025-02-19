@@ -1,7 +1,12 @@
 cmake_minimum_required(VERSION 3.30 FATAL_ERROR)
 
-project(Motor VERSION 0.1.0 DESCRIPTION "Motor - is a modern game engine for multiplayer games"
-    HOMEPAGE_URL "https://github.com/dv-derkach/Motor" LANGUAGES CXX)
+project(
+    Motor
+    VERSION 0.1.0
+    DESCRIPTION "Motor - is a modern game engine for multiplayer games"
+    HOMEPAGE_URL "https://github.com/dv-derkach/Motor"
+    LANGUAGES CXX
+)
 
 list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/Tools/CMake)
 
@@ -33,6 +38,17 @@ if(NOT generator_is_multi_config)
     endif()
 endif()
 
-message(${CMAKE_CXX_FLAGS_DEBUG})
+# Set compiler flags for build configurations for MSVC C++ compiler
+if(MSVC)
+
+endif()
+
+# Set compiler flags for build configurations for Clang and GCC C++ compilers
+if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang" OR CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+    set(CMAKE_CXX_FLAGS_DEBUG "-g")
+    set(CMAKE_CXX_FLAGS_DEVELOPMENT "-O3 -DNDEBUG")
+    set(CMAKE_CXX_FLAGS_TEST "-O3 -DNDEBUG")
+    set(CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG")
+endif()
 
 add_subdirectory(code)
