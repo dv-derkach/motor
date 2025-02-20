@@ -10,12 +10,12 @@ project(
 
 list(APPEND
     CMAKE_MODULE_PATH
-    ${PROJECT_SOURCE_DIR}/tools/cmake
-    ${PROJECT_SOURCE_DIR}/tools/cmake/modules
+    ${PROJECT_SOURCE_DIR}/code/build/cmake
 )
 
-include(index)
-include(platform/index)
+include(utils/motor_add_directories)
+include(utils/motor_add_subdirectories)
+include(utils/motor_glob_files)
 
 # Set C++20 standard
 set(CMAKE_CXX_STANDARD 20)
