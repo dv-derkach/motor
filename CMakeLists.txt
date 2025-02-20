@@ -8,12 +8,14 @@ project(
     LANGUAGES CXX
 )
 
-option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
-option(MOTOR_BUILD_EDITOR "Build the editor" ON)
-option(MOTOR_BUILD_EXAMPLES "Build the examples" ON)
-option(MOTOR_BUILD_TESTS "Build the tests" ON)
+list(APPEND
+    CMAKE_MODULE_PATH
+    ${PROJECT_SOURCE_DIR}/tools/cmake
+    ${PROJECT_SOURCE_DIR}/tools/cmake/modules
+)
 
-list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/Tools/CMake)
+include(index)
+include(platform/index)
 
 # Set C++20 standard
 set(CMAKE_CXX_STANDARD 20)
@@ -22,10 +24,12 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Configuration types:
 #   Debug:          This configuration builds both engine and game code in debug configuration
-#                   without optimizations. This makes things slower, but is easier to debug.
+#                   without optimizations. This makes things slower, but is easier to debug. Also
+#                   this configuration includes all console commands, stats and profilling tools.
 #
-#   Development:    This configuration is the Release configuration, but with some console commands
-#                   stats, and profiling tools enabled.
+#   Development:    This configuration builds both engine and game code with optimisations and
+#                   excludes debug symbols. Also this configuration includes all console commands,
+#                   stats and profilling tools.
 #
 #   Release:        This is the configuration for optimal performance and shipping your game. This
 #                   configuration strips out console commands, stats, and profiling tools.
@@ -59,4 +63,4 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang" OR CMAKE_CXX_COMPILER_ID STREQUAL "GNU
     set(CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG")
 endif()
 
-add_subdirectory(code)
+motor_add_directories(code)

@@ -1,0 +1,1 @@
+motor_add_directories(main)
