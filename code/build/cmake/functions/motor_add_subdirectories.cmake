@@ -1,4 +1,4 @@
-include(utils/motor_add_directories)
+include(functions/motor_add_directories)
 
 # Adds all subdirectories in specific directory.
 #

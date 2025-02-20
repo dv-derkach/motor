@@ -13,9 +13,7 @@ list(APPEND
     ${PROJECT_SOURCE_DIR}/code/build/cmake
 )
 
-include(utils/motor_add_directories)
-include(utils/motor_add_subdirectories)
-include(utils/motor_glob_files)
+include(functions/index)
 
 # Set C++20 standard
 set(CMAKE_CXX_STANDARD 20)
