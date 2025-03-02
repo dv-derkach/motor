@@ -1,3 +1,0 @@
-include(functions/motor_add_directories)
-include(functions/motor_add_subdirectories)
-include(functions/motor_glob_files)

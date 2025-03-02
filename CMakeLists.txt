@@ -3,17 +3,15 @@ cmake_minimum_required(VERSION 3.30 FATAL_ERROR)
 project(
     Motor
     VERSION 0.1.0
-    DESCRIPTION "Motor - is a modern game engine for multiplayer games"
-    HOMEPAGE_URL "https://github.com/dv-derkach/Motor"
+    DESCRIPTION "Motor - is a modern game engine"
+    HOMEPAGE_URL "https://github.com/dv-derkach/motor"
     LANGUAGES CXX
 )
 
 list(APPEND
     CMAKE_MODULE_PATH
-    ${PROJECT_SOURCE_DIR}/code/build/cmake
+    ${PROJECT_SOURCE_DIR}/cmake
 )
-
-include(functions/index)
 
 # Set C++20 standard
 set(CMAKE_CXX_STANDARD 20)
@@ -61,4 +59,4 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang" OR CMAKE_CXX_COMPILER_ID STREQUAL "GNU
     set(CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG")
 endif()
 
-motor_add_directories(code)
+add_subdirectory(code)
