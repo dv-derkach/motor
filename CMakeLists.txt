@@ -13,6 +13,8 @@ list(APPEND
     ${PROJECT_SOURCE_DIR}/cmake
 )
 
+include(motor-module)
+
 # Set C++20 standard
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -43,6 +45,10 @@ endif()
 
 # Set compiler and linker flags for MSVC C++ compiler
 if(MSVC)
+    if(MSVC_VERSION VERSION_LESS 1943)
+        message(FATAL_ERROR "MSVC version less then supported (1943)")
+    endif()
+
     set(CMAKE_CXX_FLAGS_DEBUG "/Ob0 /Od /RTC1")
     set(CMAKE_CXX_FLAGS_DEVELOPMENT "/O2 /Ob2 /DNDEBUG")
     set(CMAKE_CXX_FLAGS_RELEASE "/O2 /Ob2 /DNDEBUG")
